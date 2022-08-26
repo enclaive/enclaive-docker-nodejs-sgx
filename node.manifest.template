@@ -1,0 +1,58 @@
+libos.entrypoint = "/usr/bin/node"
+
+loader.entrypoint = "file:{{ gramine.libos }}"
+
+# for generic usage with mounted applications
+loader.insecure__use_host_env = true
+loader.insecure__use_cmdline_argv = true
+
+loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}:/usr/local/lib"
+
+loader.log_level = "error"
+#loader.log_file = "log.txt"
+
+# Node.js requires eventfd2() emulation
+sys.insecure__allow_eventfd = true
+
+fs.mounts = [
+    { path = "/tmp",                uri = "file:/tmp", type = "tmpfs" },
+    { path = "/etc",                uri = "file:/etc" },
+    { path = "/usr",                uri = "file:/usr" },
+    { path = "/lib",                uri = "file:{{ gramine.runtimedir() }}" },
+    { path = "{{ arch_libdir }}",   uri = "file:{{ arch_libdir }}" },
+    { path = "/app",                uri = "file:/app" },
+    { path = "/data",               uri = "file:/data", type = "encrypted", key_name = "data" },
+]
+fs.insecure__keys.data = "ffeeddccbbaa99887766554433221100"
+
+sgx.enclave_size = "2G"
+sgx.thread_num = 24
+
+sgx.debug = false
+sgx.isvprodid = 1
+sgx.isvsvn    = 1
+
+sgx.trusted_files = [
+    "file:{{ gramine.libos }}",
+    "file:{{ gramine.runtimedir() }}/",
+    "file:{{ arch_libdir }}/",
+
+    "file:/usr/bin/node",
+
+    "file:/usr/share/zoneinfo/",
+    "file:/usr/share/zoneinfo-icu/",
+
+    "file:/etc/nsswitch.conf",
+    "file:/etc/host.conf",
+
+    "file:/etc/passwd",
+    "file:/etc/os-release",
+    "file:/etc/localtime",
+    "file:/etc/ssl/openssl.cnf",
+]
+
+sgx.allowed_files = [
+    "file:/app/",
+    "file:/etc/hosts",
+    "file:/etc/resolv.conf",
+]

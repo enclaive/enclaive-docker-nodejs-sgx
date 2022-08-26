@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  node:
+    image: enclaive/nodejs-sgx:latest
+    build: .
+    devices:
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+      - "/dev/sgx/enclave:/dev/sgx_enclave"
+      - "/dev/sgx_provision:/dev/sgx_provision"
+    volumes:
+      - type: volume
+        target: /data
+      - "./demo/:/app/demo/"
+    command: /app/demo/src/index.js
