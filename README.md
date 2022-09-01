@@ -67,6 +67,7 @@ Following benefits come for free with Nodejs-SGX :
 
 ```sh
 docker pull enclaive/nodejs-sgx
+cd example && yarn install
 docker-compose up -d
 ```
 **Warning**: This quick setup is only intended for development environments. You are encouraged to change the insecure default credentials and check out the available configuration options in the [build](#build-the-image) section for a more secure deployment.

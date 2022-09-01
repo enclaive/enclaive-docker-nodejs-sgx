@@ -12,5 +12,5 @@ services:
     volumes:
       - type: volume
         target: /data
-      - "./demo/:/app/demo/"
-    command: /app/demo/src/index.js
+      - "./example/:/app/example/"
+    command: /app/example/src/index.js
