@@ -2,15 +2,33 @@ version: '2'
 
 services:
 
-  node:
-    image: enclaive/nodejs-sgx:latest
+  demo:
+    image: demo/nodejs:latest
     build: .
+    volumes:
+      - "data:/vanilla/"
+      - "sgx-data:/sgx/"
+    entrypoint: tail -f /dev/null
+
+  vanilla:
+    image: demo/nodejs:latest
+    build: .
+    volumes:
+      - "data:/data/"
+      - "./:/app/demo/"
+    command: /app/demo/src/index.js
+
+  sgx:
+    image: enclaive/nodejs-sgx:latest
     devices:
       - "/dev/sgx/enclave:/dev/sgx/enclave"
       - "/dev/sgx/enclave:/dev/sgx_enclave"
       - "/dev/sgx_provision:/dev/sgx_provision"
     volumes:
-      - type: volume
-        target: /data
-      - "./example/:/app/example/"
-    command: /app/example/src/index.js
+      - "sgx-data:/data/"
+      - "./:/app/demo/"
+    command: /app/demo/src/index.js
+
+volumes:
+  data:
+  sgx-data:
