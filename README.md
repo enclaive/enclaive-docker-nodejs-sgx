@@ -1,10 +1,14 @@
-# Running
+# NodeJS-SGX Demonstation: NodeJS Express and Protection against Runtime Leakage
+
+We execute a NodeJS Express Web Application and show that during and after the execution no sensitive information are leaked. For example, during runtime Node creates log files undeliberately leaking sensitive data (e.g. IP addresses of user requesting the page). The goal of the demo is to show NodeJS executions in confidenital containers may be configured to prevent the leakage.
+
+## Run the Image
 
 ```bash
 docker-compose up -d
 ```
 
-# Demonstrating
+## Demonstration
 
 Use two shells in demo:
 
