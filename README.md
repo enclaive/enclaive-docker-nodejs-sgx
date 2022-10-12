@@ -26,7 +26,7 @@
     ·
     <a href="https://github.com/enclaive/enclaive-docker-nodejs-sgx/issues">Request Feature</a>
   </p>
-        <a href="https://youtu.be/khaC-vtteP8"><img  src="https://img.youtube.com/vi/khaC-vtteP8/0.jpg"></img></a>
+        <a href="https://youtu.be/Q9EGCAQUC4U"><img  src="https://img.youtube.com/vi/Q9EGCAQUC4U/0.jpg"></img></a>
         <br>Demo-Video: NodeJS Express and Protection against Runtime Leakage (<a href="https://github.com/enclaive/enclaive-docker-nodejs-sgx/tree/demo">read more</a>) 
 </div>
 
