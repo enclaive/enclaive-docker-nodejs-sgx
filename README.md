@@ -152,6 +152,19 @@ If you wish, you can also build the image yourself.
 docker build -t enclaive/nodejs-sgx:latest 'https://github.com/enclaive/enclaive-docker-nodejs-sgx.git#master'
 ```
 
+<!-- MODIFY THE IMAGE -->
+## Modify the Image
+Copy your nodejs project to folder `example/src`. Make sure `npm` is installed and executed
+```
+cd example
+npm install
+```
+Run
+```
+docker compose up
+```
+Node serves the application on port `3000`.
+
 <!-- ACCESSING -->
 ### Accessing your server from the host
 
