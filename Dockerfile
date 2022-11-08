@@ -14,4 +14,6 @@ RUN gramine-manifest -Darch_libdir=/lib/x86_64-linux-gnu node.manifest.template 
 
 VOLUME /data/
 
+EXPOSE 3000
+
 ENTRYPOINT [ "/usr/local/bin/gramine-sgx", "node" ]
